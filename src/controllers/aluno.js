@@ -38,6 +38,7 @@ const putAlunos = async (req, res, next) => {
     }
 }
 
+/*
 const patchAlunos = async (req, res, next) => {
     try {
         let params = req.body
@@ -48,9 +49,10 @@ const patchAlunos = async (req, res, next) => {
         res.status(500).send(err.message);
     }
 }
+*/
 
 module.exports.getAluno = getAluno
 module.exports.postAlunos = postAlunos
 module.exports.deleteAlunos = deleteAlunos
 module.exports.putAlunos = putAlunos
-module.exports.patchAlunos = patchAlunos
+//module.exports.patchAlunos = patchAlunos

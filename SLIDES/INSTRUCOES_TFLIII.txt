@@ -1,0 +1,17 @@
+NOTA 1 - Estrutura
+-- 6 Tabelas (5 Campos) + 2 Tabelas de Relação Muitos para Muitos
+-- SQL da criação em Postgres
+-- Demonstração dele funcionando com Docker Build!
+
+2 AULAS (16/05 - apresentação MAXIMO)
+
+NOTA 2 - Apresentação 
+-- DADOS PRÉ CADASTRADOS
+-- Crud pelo menos com Get, Post, Patch e Delete. (CONSIDERE OS MUITOS P/ MUITOS)
+-- Controle de Autenticação
+-- Testes todos via Documentação/Swagger
+-- Demonstração da estrutura de pasta e todos arquivos contidos nelas.
+
+TEMPO: 5 AULAS (13/06 & 20/06 - apresentação 2)
+
+PROVA FINAL 13/06 
