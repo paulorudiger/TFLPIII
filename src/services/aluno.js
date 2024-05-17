@@ -17,7 +17,7 @@ const getAluno = async () => {
 const sql_insert =
     `insert into aluno (idaluno, matricula, dataNascimento)
                     values ($1, $2, $3)  `
-const postAlunos = async (params) => {
+const postAluno = async (params) => {
     const { idaluno, matricula, dataNascimento } = params
     await db.query(sql_insert, [idaluno, matricula, dataNascimento])
 }
@@ -25,7 +25,7 @@ const postAlunos = async (params) => {
 const sql_delete =
     `    delete from aluno
       where idaluno = $1 `;
-const deleteAlunos = async (params) => {
+const deleteAluno = async (params) => {
     const { idaluno } = params
     await db.query(sql_delete, [idaluno]);
 }
@@ -35,7 +35,7 @@ const sql_put =
         set matricula = $2,
         dataNascimento = $3,
         where idaluno = $1 `
-const putAlunos = async (params) => {
+const putAluno = async (params) => {
     const { idaluno, matricula, dataNascimento } = params
     return await db.query(sql_put, [idaluno, matricula, dataNascimento])
 }
@@ -75,7 +75,7 @@ const patchAlunos = async (params) => {
 } */
 
 module.exports.getAluno = getAluno
-module.exports.postAlunos = postAlunos
-module.exports.deleteAlunos = deleteAlunos
-module.exports.putAlunos = putAlunos
+module.exports.postAluno = postAluno
+module.exports.deleteAluno = deleteAluno
+module.exports.putAluno = putAluno
 // module.exports.patchAlunos = patchAlunos

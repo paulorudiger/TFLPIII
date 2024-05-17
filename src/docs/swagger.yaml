@@ -1,0 +1,145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API TFLPIII HORUS BIBLIOTECA",
+    "description": "Documentação da API TFLPIII HORUS BIBLIOTECA"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "aplication/json"
+  ],
+  "produces": [
+    "aplication/json"
+  ],
+  "paths": {
+    "/aluno": {
+      "get": {
+        "tags": [
+          "Aluno"
+        ],
+        "summary": "Consulta lista de alunos.",
+        "description": "Descrição do metodo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Aluno"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir um novo aluno",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "paulo"
+                },
+                "sobrenome": {
+                  "type": "string",
+                  "example": "estevao"
+                },
+                "periodo": {
+                  "type": "number",
+                  "example": 5
+                },
+                "observacao": {
+                  "type": "string",
+                  "example": "teste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/aluno/{id}": {
+      "delete": {
+        "tags": [
+          "Aluno"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Aluno"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "aluno/{id}": {
+      "patch": {
+        "tags": [
+          "Aluno"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Codigo do aluno",
+            "value": 1
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "basepath": ""
+}

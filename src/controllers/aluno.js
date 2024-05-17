@@ -9,29 +9,29 @@ const getAluno = async (req, res, next) => {
     }
 }
 
-const postAlunos = async (req, res, next) => {
+const postAluno = async (req, res, next) => {
     try {
-        const retorno = await alunoService.postAlunos(req.body);
+        const retorno = await alunoService.postAluno(req.body);
         res.status(201).send(retorno);
     } catch (err) {
         res.status(500).send(err.message);
     }
 }
 
-const deleteAlunos = async (req, res, next) => {
+const deleteAluno = async (req, res, next) => {
     try {
-        const retorno = await alunoService.deleteAlunos(req.params)
+        const retorno = await alunoService.deleteAluno(req.params)
         res.status(204).send(retorno)
     } catch (err) {
         res.status(500).send(err.message);
     }
 }
 
-const putAlunos = async (req, res, next) => {
+const putAluno = async (req, res, next) => {
     try {
         let params = req.body
         params.id = req.params.id
-        const retorno = await alunoService.putAlunos(params)
+        const retorno = await alunoService.putAluno(params)
         res.status(204).send(retorno)
     } catch (err) {
         res.status(500).send(err.message);
@@ -52,7 +52,7 @@ const patchAlunos = async (req, res, next) => {
 */
 
 module.exports.getAluno = getAluno
-module.exports.postAlunos = postAlunos
-module.exports.deleteAlunos = deleteAlunos
-module.exports.putAlunos = putAlunos
+module.exports.postAluno = postAluno
+module.exports.deleteAluno = deleteAluno
+module.exports.putAluno = putAluno
 //module.exports.patchAlunos = patchAlunos
