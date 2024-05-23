@@ -1,7 +1,7 @@
 const alunoService = require('../services/aluno');
 
 const getAluno = async (req, res, next) => {
-    console.log("chegou")
+   // console.log("chegou")
     try {
         const retorno = await alunoService.getAluno()
         res.status(200).send(retorno)

@@ -3,7 +3,7 @@ const db = require('../configs/pg')
 const sql_get =
     `select idaluno,
             matricula,
-            dataNascimento ,
+            dataNascimento 
       from aluno `
 
 const getAluno = async () => {
