@@ -6,7 +6,7 @@ module.exports = (app) => {
         // #swagger.summary = "Consulta lista de alunos."
         // #swagger.description = "Descrição do metodo"
     )
-    app.post('/aluno', alunoController.postAlunos
+    app.post('/aluno', alunoController.postAluno
         // #swagger.tags = ["Aluno"]
         /*#swagger.parameters['json'] = {
                 description: 'Dados para inserir um novo aluno',
@@ -24,13 +24,13 @@ module.exports = (app) => {
             */
 
     )
-    app.delete('/aluno/:id', alunoController.deleteAlunos
+    app.delete('/aluno/:id', alunoController.deleteAluno
         // #swagger.tags = ["Aluno"]
     )
-    app.put('/aluno/:id', alunoController.putAlunos
+    app.put('/aluno/:id', alunoController.putAluno
         // #swagger.tags = ["Aluno"]
     )
-    app.patch('aluno/:id', alunoController.patchAlunos
+   /* app.patch('aluno/:id', alunoController.patchAluno
         // #swagger.tags = ["Aluno"]
         /*#swagger.parameters['id'] = {
             description: 'Codigo do aluno',
@@ -39,6 +39,6 @@ module.exports = (app) => {
             type: 'integer',
             value: 1
         }
-        */
-    )
+        
+    ) */
 }
