@@ -14,6 +14,6 @@ const doc = {
 }
 
 const outputFile = './src/docs/swagger.yaml';
-const endpointsFiles = ['./src/routes/aluno.js'];
+const endpointsFiles = ['./src/routes/aluno.js', './src/routes/professor.js'];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);

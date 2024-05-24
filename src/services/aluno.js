@@ -31,7 +31,7 @@ const deleteAluno = async (params) => {
 }
 
 const sql_patch =
-    `update alunos
+    `update aluno
         set
     `
 const patchAluno = async (params) => {

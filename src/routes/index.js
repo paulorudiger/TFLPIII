@@ -1,7 +1,7 @@
 const Aluno = require("./aluno");
-// const Usuario = require("./usuarios");
+const Professor = require("./professor");
 
 module.exports = (app) => {
     Aluno(app)
-  //  Usuarios(app)
+    Professor(app)
 }

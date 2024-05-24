@@ -129,6 +129,119 @@
           }
         }
       }
+    },
+    "/professor": {
+      "get": {
+        "tags": [
+          "Professor"
+        ],
+        "summary": "Consulta lista de professores.",
+        "description": "Descrição do metodo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Professor"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir um novo aluno",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "matricula": {
+                  "type": "string",
+                  "example": "12345678"
+                },
+                "cargo": {
+                  "type": "string",
+                  "example": "Professor"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Criado"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      }
+    },
+    "/professor/{idprofessor}": {
+      "delete": {
+        "tags": [
+          "Professor"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "idprofessor",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum Conteúdo"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      }
+    },
+    "professor/{idprofessor}": {
+      "patch": {
+        "tags": [
+          "Professor"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Codigo do professor",
+            "value": 1
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum Conteúdo"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      }
     }
   },
   "basepath": ""
