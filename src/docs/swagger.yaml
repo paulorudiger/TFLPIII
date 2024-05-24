@@ -11,10 +11,10 @@
     "http"
   ],
   "consumes": [
-    "aplication/json"
+    "application/json"
   ],
   "produces": [
-    "aplication/json"
+    "application/json"
   ],
   "paths": {
     "/aluno": {
@@ -46,25 +46,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
-                  "type": "number",
-                  "example": 1
-                },
-                "nome": {
+                "matricula": {
                   "type": "string",
-                  "example": "paulo"
+                  "example": "12345678"
                 },
-                "sobrenome": {
+                "dataNascimento": {
                   "type": "string",
-                  "example": "estevao"
-                },
-                "periodo": {
-                  "type": "number",
-                  "example": 5
-                },
-                "observacao": {
-                  "type": "string",
-                  "example": "teste"
+                  "example": "2002-07-02"
                 }
               }
             }
@@ -80,7 +68,7 @@
         }
       }
     },
-    "/aluno/{id}": {
+    "/aluno/{idaluno}": {
       "delete": {
         "tags": [
           "Aluno"
@@ -88,7 +76,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "idaluno",
             "in": "path",
             "required": true,
             "type": "string"
@@ -102,8 +90,10 @@
             "description": "Erro Interno do Servidor"
           }
         }
-      },
-      "put": {
+      }
+    },
+    "aluno/{idaluno}": {
+      "patch": {
         "tags": [
           "Aluno"
         ],
@@ -113,7 +103,9 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "Codigo do aluno",
+            "value": 1
           },
           {
             "name": "body",
@@ -134,27 +126,6 @@
           },
           "500": {
             "description": "Erro Interno do Servidor"
-          }
-        }
-      }
-    },
-    "aluno/{id}": {
-      "patch": {
-        "tags": [
-          "Aluno"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }

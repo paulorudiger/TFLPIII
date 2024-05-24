@@ -5,7 +5,7 @@ CREATE TABLE aux (
 
 CREATE TABLE aluno (
     idaluno SERIAL PRIMARY KEY,
-    matricula VARCHAR(50) NOT NULL,
+    matricula VARCHAR(50) NOT NULL UNIQUE,
     dataNascimento DATE NOT NULL
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE turma (
 
 CREATE TABLE professor (
     idprofessor SERIAL PRIMARY KEY,
-    matricula VARCHAR(50) NOT NULL,
+    matricula VARCHAR(50) NOT NULL UNIQUE,
     cargo VARCHAR(30) NOT NULL
 );
 

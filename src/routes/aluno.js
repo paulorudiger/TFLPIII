@@ -13,32 +13,26 @@ module.exports = (app) => {
                 in: 'body',
                 type: 'json',
                 schema: {
-                     id: 1, 
-                     nome: "paulo", 
-                     sobrenome: "estevao",
-                     periodo: 5,
-                      observacao: "teste"
-    
+                     matricula: "12345678", 
+                     dataNascimento: "2002-07-02"
                 }
             }
             */
 
     )
-    app.delete('/aluno/:id', alunoController.deleteAluno
+    app.delete('/aluno/:idaluno', alunoController.deleteAluno
         // #swagger.tags = ["Aluno"]
     )
-    app.put('/aluno/:id', alunoController.putAluno
+    
+    app.patch('aluno/:idaluno', alunoController.patchAluno
         // #swagger.tags = ["Aluno"]
-    )
-   /* app.patch('aluno/:id', alunoController.patchAluno
-        // #swagger.tags = ["Aluno"]
-        /*#swagger.parameters['id'] = {
+        /*#swagger.parameters['idaluno'] = {
             description: 'Codigo do aluno',
             in: 'path',
             name: 'id',
             type: 'integer',
             value: 1
         }
-        
-    ) */
+        */
+    ) 
 }

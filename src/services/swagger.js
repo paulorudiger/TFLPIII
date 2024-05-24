@@ -9,8 +9,8 @@ const doc = {
     host: 'localhost:3000',
     basepath: "",
     schemes: ['http'],
-    consumes: ['aplication/json'],
-    produces: ['aplication/json']
+    consumes: ['application/json'],
+    produces: ['application/json']
 }
 
 const outputFile = './src/docs/swagger.yaml';
