@@ -17,6 +17,23 @@
     "application/json"
   ],
   "paths": {
+    "/usuario": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Consulta lista de usuarios.",
+        "description": "Descrição do metodo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      }
+    },
     "/aluno": {
       "get": {
         "tags": [
