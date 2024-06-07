@@ -276,6 +276,23 @@
           }
         }
       }
+    },
+    "/genero": {
+      "get": {
+        "tags": [
+          "Genero"
+        ],
+        "summary": "Consulta lista de generos.",
+        "description": "Descrição do metodo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      }
     }
   },
   "basepath": ""
