@@ -259,6 +259,23 @@
           }
         }
       }
+    },
+    "/turma": {
+      "get": {
+        "tags": [
+          "Turma"
+        ],
+        "summary": "Consulta lista de turmas.",
+        "description": "Descrição do metodo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        }
+      }
     }
   },
   "basepath": ""
