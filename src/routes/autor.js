@@ -6,5 +6,4 @@ module.exports = (app) => {
         // #swagger.summary = "Consulta lista de autores."
         // #swagger.description = "Descrição do metodo"
     )
-    
 }
