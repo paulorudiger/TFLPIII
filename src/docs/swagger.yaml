@@ -1055,6 +1055,363 @@
           }
         }
       }
+    },
+    "/livro": {
+      "get": {
+        "tags": [
+          "Livro"
+        ],
+        "summary": "Consulta lista de livros.",
+        "description": "Rota para consultar a lista de todos os livros cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de livros obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Livro Exemplo"
+                  },
+                  "disponivel": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "anoPublicacao": {
+                    "type": "number",
+                    "example": 2020
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Livro"
+        ],
+        "summary": "Insere um novo livro.",
+        "description": "Rota para inserir um novo livro no sistema.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir um novo livro",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideditora": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idgenero": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Livro Exemplo"
+                },
+                "disponivel": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "anoPublicacao": {
+                  "type": "number",
+                  "example": 2020
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Livro criado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "ideditora": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idgenero": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Livro Exemplo"
+                },
+                "disponivel": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "anoPublicacao": {
+                  "type": "number",
+                  "example": 2020
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "O id informado nas chaves estrangeiras (idgenero ou ideditora) não existe."
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          },
+          "409": {
+            "description": "Nome do livro já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/livro/{idlivro}": {
+      "delete": {
+        "tags": [
+          "Livro"
+        ],
+        "summary": "Remove um livro.",
+        "description": "Rota para remover um livro do sistema pelo ID.",
+        "parameters": [
+          {
+            "name": "idlivro",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do livro",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Livro removido com sucesso)"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Livro"
+        ],
+        "summary": "Atualiza parcialmente um livro.",
+        "description": "Rota para atualizar parcialmente um livro pelo ID.",
+        "parameters": [
+          {
+            "name": "idlivro",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do livro",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para atualizar o livro",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideditora": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idgenero": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Livro Exemplo"
+                },
+                "disponivel": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "anoPublicacao": {
+                  "type": "number",
+                  "example": 2020
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "ideditora": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idgenero": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Livro Exemplo"
+                },
+                "disponivel": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "anoPublicacao": {
+                  "type": "number",
+                  "example": 2020
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "O id informado nas chaves estrangeiras (idgenero ou ideditora) não existe."
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          },
+          "409": {
+            "description": "Nome do livro já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Livro"
+        ],
+        "summary": "Atualiza todos os dados de um livro.",
+        "description": "Rota para atualizar todos os dados de um livro pelo ID.",
+        "parameters": [
+          {
+            "name": "idlivro",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do livro",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir o livro",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideditora": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idgenero": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Livro Exemplo"
+                },
+                "disponivel": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "anoPublicacao": {
+                  "type": "number",
+                  "example": 2020
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro substituído com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "ideditora": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idgenero": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Livro Exemplo"
+                },
+                "disponivel": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "anoPublicacao": {
+                  "type": "number",
+                  "example": 2020
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "O id informado nas chaves estrangeiras (idgenero ou ideditora) não existe."
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          },
+          "409": {
+            "description": "Nome do livro já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
     }
   },
   "basepath": ""
