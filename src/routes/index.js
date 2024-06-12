@@ -4,6 +4,7 @@ const Usuario = require("./usuario");
 const Turma = require("./turma");
 const Genero = require("./genero");
 const Autor = require("./autor");
+const Editora = require("./editora");
 
 module.exports = (app) => {
     Usuario(app)
@@ -12,4 +13,5 @@ module.exports = (app) => {
     Turma(app)
     Genero(app)
     Autor(app)
+    Editora(app)
 }

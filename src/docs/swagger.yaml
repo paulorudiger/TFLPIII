@@ -310,6 +310,266 @@
           }
         }
       }
+    },
+    "/editora": {
+      "get": {
+        "tags": [
+          "Editora"
+        ],
+        "summary": "Consulta lista de editoras.",
+        "description": "Rota para consultar a lista de todas as editoras cadastradas.",
+        "responses": {
+          "200": {
+            "description": "Lista de editoras obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "nomeEditora": {
+                    "type": "string",
+                    "example": "Editora Exemplo"
+                  },
+                  "endereco": {
+                    "type": "string",
+                    "example": "Rua Exemplo, 123"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Editora"
+        ],
+        "summary": "Insere uma nova editora.",
+        "description": "Rota para inserir uma nova editora no sistema.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir uma nova editora",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeEditora": {
+                  "type": "string",
+                  "example": "Editora Exemplo"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Rua Exemplo, 123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Editora criada com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nomeEditora": {
+                  "type": "string",
+                  "example": "Editora Exemplo"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Rua Exemplo, 123"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/editora/{ideditora}": {
+      "delete": {
+        "tags": [
+          "Editora"
+        ],
+        "summary": "Remove uma editora.",
+        "description": "Rota para remover uma editora do sistema pelo ID.",
+        "parameters": [
+          {
+            "name": "ideditora",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID da editora",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Editora removida com sucesso)"
+          },
+          "404": {
+            "description": "Editora não encontrada"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Editora"
+        ],
+        "summary": "Atualiza parcialmente uma editora.",
+        "description": "Rota para atualizar parcialmente uma editora pelo ID.",
+        "parameters": [
+          {
+            "name": "ideditora",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID da editora",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para atualizar a editora",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeEditora": {
+                  "type": "string",
+                  "example": "Editora Exemplo"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Rua Exemplo, 123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Editora atualizada com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nomeEditora": {
+                  "type": "string",
+                  "example": "Editora Exemplo"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Rua Exemplo, 123"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Editora não encontrada"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Editora"
+        ],
+        "summary": "Atualiza todos os dados de uma editora.",
+        "description": "Rota para atualizar todos os dados de uma editora pelo ID.",
+        "parameters": [
+          {
+            "name": "ideditora",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID da editora",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir a editora",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeEditora": {
+                  "type": "string",
+                  "example": "Editora Exemplo"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Rua Exemplo, 123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Editora substituída com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nomeEditora": {
+                  "type": "string",
+                  "example": "Editora Exemplo"
+                },
+                "endereco": {
+                  "type": "string",
+                  "example": "Rua Exemplo, 123"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Editora não encontrada"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
     }
   },
   "basepath": ""
