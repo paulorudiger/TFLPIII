@@ -401,6 +401,9 @@
               }
             }
           },
+          "409": {
+            "description": "Conflito"
+          },
           "500": {
             "description": "Erro no servidor"
           }
@@ -498,6 +501,9 @@
           "404": {
             "description": "Editora não encontrada"
           },
+          "409": {
+            "description": "Conflito"
+          },
           "500": {
             "description": "Erro no servidor"
           }
@@ -564,6 +570,9 @@
           },
           "404": {
             "description": "Editora não encontrada"
+          },
+          "409": {
+            "description": "Conflito"
           },
           "500": {
             "description": "Erro no servidor"

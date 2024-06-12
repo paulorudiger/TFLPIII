@@ -9,24 +9,36 @@ const getEditora = async () => {
   await db
     .query(sql_get)
     .then((ret) => (editoras = { total: ret.rows.length, editoras: ret.rows }))
-    .catch((err) => (editoras = err.stack));
+    .catch((err) => {
+      throw { status: 500, message: err.stack };
+    });
   return editoras;
 };
 
 const sql_insert = `
     INSERT INTO editora (nomeEditora, endereco) 
-    VALUES ($1, $2)`;
+    VALUES ($1, $2) RETURNING *`;
 
 const postEditora = async (params) => {
   const { nomeEditora, endereco } = params;
-  let result;
-  await db
-    .query(sql_insert, [nomeEditora, endereco])
-    .then((ret) => (result = ret.rows[0]))
-    .catch((err) => {
-      throw new Error(err.stack);
-    });
-  return result;
+  try {
+    const result = await db.query(sql_insert, [nomeEditora, endereco]);
+    if (result.rowCount === 0) {
+      throw new Error("NotFound");
+    }
+    return { mensagem: "Editora criada com sucesso!", result: result.rows[0] };
+  } catch (err) {
+    if (err.constraint === "editora_nomeeditora_key") {
+      throw {
+        status: 409,
+        message: `Nome da Editora ("${nomeEditora}") já existe.`,
+      };
+    }
+    throw {
+      status: 500,
+      message: "Erro ao tentar criar a Editora. [" + err.message + "]",
+    };
+  }
 };
 
 const sql_delete = `
@@ -76,14 +88,17 @@ const patchEditora = async (params) => {
   try {
     const result = await db.query(sql, binds);
     if (result.rowCount === 0) {
-      throw new Error("NotFound");
+      throw {
+        status: 404,
+        message: `Editora com o id ${params.ideditora} não encontrada`,
+      };
     }
     return { mensagem: "Editora atualizada com sucesso!" };
   } catch (err) {
-    if (err.message === "NotFound") {
+    if (err.constraint === "editora_nomeeditora_key") {
       throw {
-        status: 404,
-        message: `Editora com o idempresa ${params.ideditora} não encontrada`,
+        status: 409,
+        message: `Nome da Editora ("${nomeEditora}") já existe.`,
       };
     }
     throw { status: 500, message: "Erro ao tentar atualizar a Editora" };
@@ -101,14 +116,17 @@ const putEditora = async (params) => {
   try {
     const result = await db.query(sql_put, [ideditora, nomeEditora, endereco]);
     if (result.rowCount === 0) {
-      throw new Error("NotFound");
+      throw {
+        status: 404,
+        message: `Editora com o id ${ideditora} não encontrada`,
+      };
     }
     return { mensagem: "Editora atualizada com sucesso!" };
   } catch (err) {
-    if (err.message === "NotFound") {
+    if (err.constraint === "editora_nomeeditora_key") {
       throw {
-        status: 404,
-        message: `Editora com o idempresa ${params.ideditora} não encontrada`,
+        status: 409,
+        message: `Nome da Editora ("${nomeEditora}") já existe.`,
       };
     }
     throw { status: 500, message: "Erro ao tentar atualizar a Editora" };

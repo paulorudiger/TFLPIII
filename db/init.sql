@@ -1,10 +1,10 @@
 -- Criação da Tabela: usuario
 CREATE TABLE usuario (
     idusuario SERIAL PRIMARY KEY,
-    usuario VARCHAR(100) NOT NULL,
+    usuario VARCHAR(100) NOT NULL UNIQUE,
     senha VARCHAR(50) NOT NULL,
     nome VARCHAR(80) NOT NULL,
-    email VARCHAR(100) NOT NULL
+    email VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Criação da Tabela: turma
@@ -35,33 +35,31 @@ CREATE TABLE professor (
 -- Criação da Tabela: autor
 CREATE TABLE autor (
     idautor SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(100) NOT NULL UNIQUE,
     nacionalidade VARCHAR(50) NOT NULL
 );
 
 -- Criação da Tabela: editora
 CREATE TABLE editora (
     ideditora SERIAL PRIMARY KEY,
-    nomeEditora VARCHAR(100) NOT NULL,
+    nomeEditora VARCHAR(100) NOT NULL UNIQUE,
     endereco VARCHAR(150) NOT NULL
 );
 
 -- Criação da Tabela: genero
 CREATE TABLE genero (
     idgenero SERIAL PRIMARY KEY,
-    nomeGenero VARCHAR(100) NOT NULL
+    nomeGenero VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Criação da Tabela: livro
 CREATE TABLE livro (
     idlivro SERIAL PRIMARY KEY,
-    idautor INTEGER NOT NULL,
     ideditora INTEGER NOT NULL,
     idgenero INTEGER NOT NULL,
-    nome VARCHAR(200) NOT NULL,
+    nome VARCHAR(200) NOT NULL UNIQUE,
     disponivel BOOLEAN NOT NULL,
     anoPublicacao INTEGER NOT NULL,
-    FOREIGN KEY (idautor) REFERENCES autor(idautor),
     FOREIGN KEY (ideditora) REFERENCES editora(ideditora),
     FOREIGN KEY (idgenero) REFERENCES genero(idgenero)
 );
@@ -78,13 +76,13 @@ CREATE TABLE aluguel (
     FOREIGN KEY (idlivro) REFERENCES livro(idlivro)
 );
 
--- Criação da Tabela: autor_editora
-CREATE TABLE autor_editora (
+-- Criação da Tabela: livro_autor
+CREATE TABLE livro_autor (
+    idlivro INTEGER NOT NULL,
     idautor INTEGER NOT NULL,
-    ideditora INTEGER NOT NULL,
-    PRIMARY KEY (idautor, ideditora),
-    FOREIGN KEY (idautor) REFERENCES autor(idautor),
-    FOREIGN KEY (ideditora) REFERENCES editora(ideditora)
+    PRIMARY KEY (idlivro, idautor),
+    FOREIGN KEY (idlivro) REFERENCES livro(idlivro),
+    FOREIGN KEY (idautor) REFERENCES autor(idautor)
 );
 
 -- Criação da Tabela: aluno_turma
@@ -98,4 +96,3 @@ CREATE TABLE aluno_turma (
     FOREIGN KEY (idturma) REFERENCES turma(idturma),
     FOREIGN KEY (idprofessor) REFERENCES professor(idprofessor)
 );
-
