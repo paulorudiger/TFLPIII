@@ -300,13 +300,265 @@
           "Autor"
         ],
         "summary": "Consulta lista de autores.",
-        "description": "Descrição do metodo",
+        "description": "Rota para consultar a lista de todos os autores cadastrados.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Lista de autores obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Autor Exemplo"
+                  },
+                  "nacionalidade": {
+                    "type": "string",
+                    "example": "Brasileiro"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Autor"
+        ],
+        "summary": "Insere um novo autor.",
+        "description": "Rota para inserir um novo autor no sistema.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir um novo autor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Autor Exemplo"
+                },
+                "nacionalidade": {
+                  "type": "string",
+                  "example": "Brasileiro"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Autor criado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Autor Exemplo"
+                },
+                "nacionalidade": {
+                  "type": "string",
+                  "example": "Brasileiro"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "409": {
+            "description": "Nome do autor já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/autor/{idautor}": {
+      "delete": {
+        "tags": [
+          "Autor"
+        ],
+        "summary": "Remove um autor.",
+        "description": "Rota para remover um autor do sistema pelo ID.",
+        "parameters": [
+          {
+            "name": "idautor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do autor",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Autor removido com sucesso)"
+          },
+          "404": {
+            "description": "Autor não encontrado"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Autor"
+        ],
+        "summary": "Atualiza parcialmente um autor.",
+        "description": "Rota para atualizar parcialmente um autor pelo ID.",
+        "parameters": [
+          {
+            "name": "idautor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do autor",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para atualizar o autor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Autor Exemplo"
+                },
+                "nacionalidade": {
+                  "type": "string",
+                  "example": "Brasileiro"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Autor atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Autor Exemplo"
+                },
+                "nacionalidade": {
+                  "type": "string",
+                  "example": "Brasileiro"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Autor não encontrado"
+          },
+          "409": {
+            "description": "Nome do autor já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Autor"
+        ],
+        "summary": "Atualiza todos os dados de um autor.",
+        "description": "Rota para atualizar todos os dados de um autor pelo ID.",
+        "parameters": [
+          {
+            "name": "idautor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do autor",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir o autor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Autor Exemplo"
+                },
+                "nacionalidade": {
+                  "type": "string",
+                  "example": "Brasileiro"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Autor substituído com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Autor Exemplo"
+                },
+                "nacionalidade": {
+                  "type": "string",
+                  "example": "Brasileiro"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Autor não encontrado"
+          },
+          "409": {
+            "description": "Nome do autor já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
           }
         }
       }

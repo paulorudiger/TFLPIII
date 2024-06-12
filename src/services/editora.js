@@ -88,13 +88,16 @@ const patchEditora = async (params) => {
   try {
     const result = await db.query(sql, binds);
     if (result.rowCount === 0) {
-      throw {
-        status: 404,
-        message: `Editora com o id ${params.ideditora} não encontrada`,
-      };
+      throw new Error("NotFound");
     }
     return { mensagem: "Editora atualizada com sucesso!" };
   } catch (err) {
+    if (err.message === "NotFound") {
+      throw {
+        status: 404,
+        message: `Editora com o idempresa ${params.ideditora} não encontrada`,
+      };
+    }
     if (err.constraint === "editora_nomeeditora_key") {
       throw {
         status: 409,
@@ -116,13 +119,16 @@ const putEditora = async (params) => {
   try {
     const result = await db.query(sql_put, [ideditora, nomeEditora, endereco]);
     if (result.rowCount === 0) {
-      throw {
-        status: 404,
-        message: `Editora com o id ${ideditora} não encontrada`,
-      };
+      throw new Error("NotFound");
     }
     return { mensagem: "Editora atualizada com sucesso!" };
   } catch (err) {
+    if (err.message === "NotFound") {
+      throw {
+        status: 404,
+        message: `Editora com o idempresa ${params.ideditora} não encontrada`,
+      };
+    }
     if (err.constraint === "editora_nomeeditora_key") {
       throw {
         status: 409,
