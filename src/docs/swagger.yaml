@@ -282,14 +282,238 @@
         "tags": [
           "Genero"
         ],
-        "summary": "Consulta lista de generos.",
-        "description": "Descrição do metodo",
+        "summary": "Consulta lista de gêneros.",
+        "description": "Rota para consultar a lista de todos os gêneros cadastrados.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Lista de gêneros obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "nomeGenero": {
+                    "type": "string",
+                    "example": "Gênero Exemplo"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Genero"
+        ],
+        "summary": "Insere um novo gênero.",
+        "description": "Rota para inserir um novo gênero no sistema.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir um novo gênero",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeGenero": {
+                  "type": "string",
+                  "example": "Gênero Exemplo"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Gênero criado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nomeGenero": {
+                  "type": "string",
+                  "example": "Gênero Exemplo"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "409": {
+            "description": "Nome do gênero já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/genero/{idgenero}": {
+      "delete": {
+        "tags": [
+          "Genero"
+        ],
+        "summary": "Remove um gênero.",
+        "description": "Rota para remover um gênero do sistema pelo ID.",
+        "parameters": [
+          {
+            "name": "idgenero",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do gênero",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Gênero removido com sucesso)"
+          },
+          "404": {
+            "description": "Gênero não encontrado"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Genero"
+        ],
+        "summary": "Atualiza parcialmente um gênero.",
+        "description": "Rota para atualizar parcialmente um gênero pelo ID.",
+        "parameters": [
+          {
+            "name": "idgenero",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do gênero",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para atualizar o gênero",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeGenero": {
+                  "type": "string",
+                  "example": "Gênero Exemplo"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gênero atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nomeGenero": {
+                  "type": "string",
+                  "example": "Gênero Exemplo"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Gênero não encontrado"
+          },
+          "409": {
+            "description": "Nome do gênero já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Genero"
+        ],
+        "summary": "Atualiza todos os dados de um gênero.",
+        "description": "Rota para atualizar todos os dados de um gênero pelo ID.",
+        "parameters": [
+          {
+            "name": "idgenero",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do gênero",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir o gênero",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nomeGenero": {
+                  "type": "string",
+                  "example": "Gênero Exemplo"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gênero substituído com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "nomeGenero": {
+                  "type": "string",
+                  "example": "Gênero Exemplo"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Gênero não encontrado"
+          },
+          "409": {
+            "description": "Nome do gênero já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
           }
         }
       }
