@@ -22,14 +22,358 @@
         "tags": [
           "Usuario"
         ],
-        "summary": "Consulta lista de usuarios.",
-        "description": "Descrição do metodo",
+        "summary": "Consulta lista de usuários.",
+        "description": "Rota para consultar a lista de todos os usuários cadastrados.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Lista de usuários obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "idusuario": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "usuario": {
+                    "type": "string",
+                    "example": "usuarioExemplo"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Nome Exemplo"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "email@exemplo.com"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Insere um novo usuário.",
+        "description": "Rota para inserir um novo usuário no sistema.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir um novo usuário",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senhaExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "409": {
+            "description": "Usuário ou email já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/usuario/{idusuario}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Consulta um usuário pelo ID.",
+        "description": "Rota para consultar um usuário pelo ID.",
+        "parameters": [
+          {
+            "name": "idusuario",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do usuário",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário obtido com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Remove um usuário.",
+        "description": "Rota para remover um usuário do sistema pelo ID.",
+        "parameters": [
+          {
+            "name": "idusuario",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do usuário",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Usuário removido com sucesso)"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Atualiza parcialmente um usuário.",
+        "description": "Rota para atualizar parcialmente um usuário pelo ID.",
+        "parameters": [
+          {
+            "name": "idusuario",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do usuário",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para atualizar o usuário",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senhaExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "409": {
+            "description": "Usuário ou email já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Atualiza todos os dados de um usuário.",
+        "description": "Rota para atualizar todos os dados de um usuário pelo ID.",
+        "parameters": [
+          {
+            "name": "idusuario",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do usuário",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir o usuário",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "senhaExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário substituído com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "409": {
+            "description": "Usuário ou email já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
           }
         }
       }
@@ -40,13 +384,40 @@
           "Aluno"
         ],
         "summary": "Consulta lista de alunos.",
-        "description": "Descrição do metodo",
+        "description": "Rota para consultar a lista de todos os alunos cadastrados.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Lista de alunos obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "idaluno": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "idusuario": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "matricula": {
+                    "type": "string",
+                    "example": "2021001"
+                  },
+                  "dataNascimento": {
+                    "type": "string",
+                    "example": "2000-01-01"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
           }
         }
       },
@@ -54,22 +425,28 @@
         "tags": [
           "Aluno"
         ],
-        "description": "",
+        "summary": "Insere um novo aluno.",
+        "description": "Rota para inserir um novo aluno no sistema.",
         "parameters": [
           {
             "name": "json",
             "description": "Dados para inserir um novo aluno",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
                 "matricula": {
                   "type": "string",
-                  "example": "12345678"
+                  "example": "2021001"
                 },
                 "dataNascimento": {
                   "type": "string",
-                  "example": "2002-07-02"
+                  "example": "2000-01-01"
                 }
               }
             }
@@ -77,10 +454,40 @@
         ],
         "responses": {
           "201": {
-            "description": "Criado"
+            "description": "Aluno criado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluno": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "dataNascimento": {
+                  "type": "string",
+                  "example": "2000-01-01"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Não Encontrado"
+          },
+          "409": {
+            "description": "Matrícula já existe"
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
           }
         }
       }
@@ -90,59 +497,183 @@
         "tags": [
           "Aluno"
         ],
-        "description": "",
+        "summary": "Remove um aluno.",
+        "description": "Rota para remover um aluno do sistema pelo ID.",
         "parameters": [
           {
             "name": "idaluno",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID do aluno",
+            "example": 1
           }
         ],
         "responses": {
           "204": {
-            "description": "Nenhum Conteúdo"
+            "description": "Nenhum conteúdo (Aluno removido com sucesso)"
+          },
+          "404": {
+            "description": "Aluno não encontrado"
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
           }
         }
-      }
-    },
-    "aluno/{idaluno}": {
+      },
       "patch": {
         "tags": [
           "Aluno"
         ],
-        "description": "",
+        "summary": "Atualiza parcialmente um aluno.",
+        "description": "Rota para atualizar parcialmente um aluno pelo ID.",
         "parameters": [
           {
-            "name": "id",
+            "name": "idaluno",
             "in": "path",
             "required": true,
             "type": "integer",
-            "description": "Codigo do aluno",
-            "value": 1
+            "description": "ID do aluno",
+            "example": 1
           },
           {
-            "name": "body",
+            "name": "json",
+            "description": "Dados para atualizar o aluno",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
-                  "example": "any"
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "dataNascimento": {
+                  "type": "string",
+                  "example": "2000-01-01"
                 }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Nenhum Conteúdo"
+          "200": {
+            "description": "Aluno atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluno": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "dataNascimento": {
+                  "type": "string",
+                  "example": "2000-01-01"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          },
+          "409": {
+            "description": "Matrícula já existe"
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Aluno"
+        ],
+        "summary": "Atualiza todos os dados de um aluno.",
+        "description": "Rota para atualizar todos os dados de um aluno pelo ID.",
+        "parameters": [
+          {
+            "name": "idaluno",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do aluno",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir o aluno",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "dataNascimento": {
+                  "type": "string",
+                  "example": "2000-01-01"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluno substituído com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluno": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "dataNascimento": {
+                  "type": "string",
+                  "example": "2000-01-01"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Aluno não encontrado"
+          },
+          "409": {
+            "description": "Matrícula já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
           }
         }
       }
@@ -153,13 +684,40 @@
           "Professor"
         ],
         "summary": "Consulta lista de professores.",
-        "description": "Descrição do metodo",
+        "description": "Rota para consultar a lista de todos os professores cadastrados.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Lista de professores obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "idprofessor": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "idusuario": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "matricula": {
+                    "type": "string",
+                    "example": "2021001"
+                  },
+                  "cargo": {
+                    "type": "string",
+                    "example": "Professor"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
           }
         }
       },
@@ -167,18 +725,24 @@
         "tags": [
           "Professor"
         ],
-        "description": "",
+        "summary": "Insere um novo professor.",
+        "description": "Rota para inserir um novo professor no sistema.",
         "parameters": [
           {
             "name": "json",
-            "description": "Dados para inserir um novo aluno",
+            "description": "Dados para inserir um novo professor",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
                 "matricula": {
                   "type": "string",
-                  "example": "12345678"
+                  "example": "2021001"
                 },
                 "cargo": {
                   "type": "string",
@@ -190,10 +754,37 @@
         ],
         "responses": {
           "201": {
-            "description": "Criado"
+            "description": "Professor criado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idprofessor": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "cargo": {
+                  "type": "string",
+                  "example": "Professor"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "409": {
+            "description": "Matrícula já existe"
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
           }
         }
       }
@@ -203,59 +794,183 @@
         "tags": [
           "Professor"
         ],
-        "description": "",
+        "summary": "Remove um professor.",
+        "description": "Rota para remover um professor do sistema pelo ID.",
         "parameters": [
           {
             "name": "idprofessor",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID do professor",
+            "example": 1
           }
         ],
         "responses": {
           "204": {
-            "description": "Nenhum Conteúdo"
+            "description": "Nenhum conteúdo (Professor removido com sucesso)"
+          },
+          "404": {
+            "description": "Professor não encontrado"
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
           }
         }
-      }
-    },
-    "professor/{idprofessor}": {
+      },
       "patch": {
         "tags": [
           "Professor"
         ],
-        "description": "",
+        "summary": "Atualiza parcialmente um professor.",
+        "description": "Rota para atualizar parcialmente um professor pelo ID.",
         "parameters": [
           {
-            "name": "id",
+            "name": "idprofessor",
             "in": "path",
             "required": true,
             "type": "integer",
-            "description": "Codigo do professor",
-            "value": 1
+            "description": "ID do professor",
+            "example": 1
           },
           {
-            "name": "body",
+            "name": "json",
+            "description": "Dados para atualizar o professor",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
-                  "example": "any"
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "cargo": {
+                  "type": "string",
+                  "example": "Professor"
                 }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Nenhum Conteúdo"
+          "200": {
+            "description": "Professor atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idprofessor": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "cargo": {
+                  "type": "string",
+                  "example": "Professor"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          },
+          "409": {
+            "description": "Matrícula já existe"
           },
           "500": {
-            "description": "Erro Interno do Servidor"
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Professor"
+        ],
+        "summary": "Atualiza todos os dados de um professor.",
+        "description": "Rota para atualizar todos os dados de um professor pelo ID.",
+        "parameters": [
+          {
+            "name": "idprofessor",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do professor",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir o professor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "cargo": {
+                  "type": "string",
+                  "example": "Professor"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Professor substituído com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idprofessor": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "matricula": {
+                  "type": "string",
+                  "example": "2021001"
+                },
+                "cargo": {
+                  "type": "string",
+                  "example": "Professor"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Professor não encontrado"
+          },
+          "409": {
+            "description": "Matrícula já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
           }
         }
       }

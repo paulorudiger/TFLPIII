@@ -15,7 +15,7 @@ const db = require("../configs/pg");
 //         usuario u ON a.idusuario = u.idusuario`;
 const sql_get = `
     SELECT 
-        at.idaluno, at.idturma, at.ano
+        *
     FROM 
         aluno_turma at`;
 const getAlunoTurma = async () => {
