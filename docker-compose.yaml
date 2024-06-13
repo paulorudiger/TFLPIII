@@ -1,0 +1,18 @@
+version: "3"
+services:
+  tfbiblio-api:
+    image: tfbiblio-api
+    container_name: tfbiblio-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - tfbiblio-db
+  tfbiblio-db:
+    image: tfbiblio-db
+    container_name: tfbiblio-db
+    environment:
+      ENV POSTGRES_USER: admin
+      ENV POSTGRES_PASSWORD: 123456
+      ENV POSTGRES_DB: horus
+    ports:
+      - "5432:5432"

@@ -15,6 +15,11 @@ const getAluguel = async () => {
   return alugueis;
 };
 
+const sql_check_livro_devolvido = `
+    SELECT devolvido 
+    FROM aluguel 
+    WHERE idlivro = $1 AND devolvido = false`;
+
 const sql_insert = `
     INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) 
     VALUES ($1, $2, $3, $4, $5) RETURNING *`;
@@ -33,9 +38,18 @@ const postAluguel = async (params) => {
       throw new Error("NotFound");
     }
     // TODO: verifdicar se o livro ja foi devolvido antes de criar novo aluguel
-
+    const checkResult = await db.query(sql_check_livro_devolvido, [idlivro]);
+    // if (checkResult.rowCount > 0) {
+    //   throw new Error("Livro indisponivel");
+    // }
     return { mensagem: "Aluguel criado com sucesso!", result: result.rows[0] };
   } catch (err) {
+    if (err.message === "Livro indisponivel") {
+      throw {
+        status: 409,
+        message: `O livro com ID (${idlivro}) já está alugado e não foi devolvido.`,
+      };
+    }
     throw {
       status: 500,
       message: "Erro ao tentar criar o aluguel. [" + err.message + "]",

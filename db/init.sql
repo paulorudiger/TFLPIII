@@ -205,12 +205,12 @@ INSERT INTO livro (ideditora, idgenero, nome, disponivel, anoPublicacao) VALUES 
 INSERT INTO livro (ideditora, idgenero, nome, disponivel, anoPublicacao) VALUES (10, 10, 'A Rua dos Cataventos', true, 1940);
 
 -- Inserções na tabela aluguel
-INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (1, 1, '2024-01-01', '2024-01-10', false);
-INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (2, 2, '2024-02-01', '2024-02-10', false);
-INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (3, 3, '2024-03-01', '2024-03-10', false);
-INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (4, 4, '2024-04-01', '2024-04-10', false);
-INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (5, 5, '2024-05-01', '2024-05-10', false);
-INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (6, 6, '2024-06-01', '2024-06-10', false);
+INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (1, 1, '2024-01-01', '2024-01-10', true);
+INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (2, 2, '2024-02-01', '2024-02-10', true);
+INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (3, 3, '2024-03-01', '2024-03-10', true);
+INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (4, 4, '2024-04-01', '2024-04-10', true);
+INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (5, 5, '2024-05-01', '2024-05-10', true);
+INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (6, 6, '2024-06-01', '2024-06-10', true);
 INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (7, 7, '2024-07-01', '2024-07-10', false);
 INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (8, 8, '2024-08-01', '2024-08-10', false);
 INSERT INTO aluguel (idusuario, idlivro, dataAluguel, dataDevolucao, devolvido) VALUES (9, 9, '2024-09-01', '2024-09-10', false);

@@ -1,23 +1,23 @@
 const db = require("../configs/pg");
 
-// const sql_get = `
-//     SELECT 
-//         at.idaluno, at.idturma, at.ano,
-//         t.nome AS nomeTurma, t.turno,
-//         a.matricula, u.nome AS nomeAluno
-//     FROM 
-//         aluno_turma at
-//     JOIN 
-//         turma t ON at.idturma = t.idturma
-//     JOIN 
-//         aluno a ON at.idaluno = a.idaluno
-//     JOIN 
-//         usuario u ON a.idusuario = u.idusuario`;
 const sql_get = `
     SELECT 
-        *
+        at.idaluno, at.idturma, at.ano,
+        t.nome AS nomeTurma, t.turno,
+        a.matricula, u.nome AS nomeAluno
     FROM 
-        aluno_turma at`;
+        aluno_turma at
+    JOIN 
+        turma t ON at.idturma = t.idturma
+    JOIN 
+        aluno a ON at.idaluno = a.idaluno
+    JOIN 
+        usuario u ON a.idusuario = u.idusuario`;
+// const sql_get = `
+//     SELECT 
+//         *
+//     FROM 
+//         aluno_turma at`;
 const getAlunoTurma = async () => {
   let alunoTurma = {};
   await db
