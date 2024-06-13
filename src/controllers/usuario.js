@@ -1,5 +1,21 @@
 const usuarioService = require("../services/usuario");
 
+const loginUsuario = async (req, res, next) => {
+  try {
+    const { usuario, senha } = req.params;
+    const retorno = await usuarioService.loginUsuario(usuario, senha);
+    res.status(200).send(retorno);
+  } catch (err) {
+    switch (err.status) {
+      case 401:
+        res.status(401).send(err.message);
+        break;
+      default:
+        res.status(500).send(err.message);
+    }
+  }
+};
+
 const getUsuario = async (req, res, next) => {
   try {
     const retorno = await usuarioService.getUsuario();
@@ -11,9 +27,13 @@ const getUsuario = async (req, res, next) => {
 
 const getUsuarioByIdusuario = async (req, res, next) => {
   try {
-    const retorno = await usuarioService.getUsuarioByIdusuario(req.params.idusuario);
+    const retorno = await usuarioService.getUsuarioByIdusuario(
+      req.params.idusuario
+    );
     if (!retorno) {
-      res.status(404).send(`Usuário com o ID ${req.params.idusuario} não encontrado`);
+      res
+        .status(404)
+        .send(`Usuário com o ID ${req.params.idusuario} não encontrado`);
     } else {
       res.status(200).send(retorno);
     }
@@ -92,6 +112,7 @@ const putUsuario = async (req, res, next) => {
   }
 };
 
+module.exports.loginUsuario = loginUsuario;
 module.exports.getUsuario = getUsuario;
 module.exports.getUsuarioByIdusuario = getUsuarioByIdusuario;
 module.exports.postUsuario = postUsuario;

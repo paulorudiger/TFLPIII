@@ -1,6 +1,41 @@
 const usuarioController = require("../controllers/usuario");
 
 module.exports = (app) => {
+
+  app.get(
+    "/usuario/login/:usuario/:senha",
+    /* 
+    #swagger.tags = ["Usuario"]
+    #swagger.summary = "Login de usuário."
+    #swagger.description = "Rota para login de usuário."
+    #swagger.parameters['usuario'] = {
+      description: 'Nome de usuário',
+      in: 'path',
+      required: true,
+      type: 'string',
+      example: 'usuarioExemplo'
+    }
+    #swagger.parameters['senha'] = {
+      description: 'Senha do usuário',
+      in: 'path',
+      required: true,
+      type: 'string',
+      example: 'senhaExemplo'
+    }
+    #swagger.responses[200] = {
+      description: 'Login realizado com sucesso',
+      schema: { idusuario: 1, usuario: "usuarioExemplo", nome: "Nome Exemplo", email: "email@exemplo.com" }
+    }
+    #swagger.responses[401] = {
+      description: 'Credenciais inválidas'
+    }
+    #swagger.responses[500] = {
+      description: 'Erro no servidor'
+    }
+    */
+    usuarioController.loginUsuario
+  );
+
   app.get(
     "/usuario",
     /* 

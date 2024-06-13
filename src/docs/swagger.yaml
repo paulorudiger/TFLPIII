@@ -17,6 +17,68 @@
     "application/json"
   ],
   "paths": {
+    "/usuario/login/{usuario}/{senha}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Login de usuário.",
+        "description": "Rota para login de usuário.",
+        "parameters": [
+          {
+            "name": "usuario",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Nome de usuário",
+            "example": "usuarioExemplo"
+          },
+          {
+            "name": "senha",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Senha do usuário",
+            "example": "senhaExemplo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "usuario": {
+                  "type": "string",
+                  "example": "usuarioExemplo"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Nome Exemplo"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email@exemplo.com"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Credenciais inválidas"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
     "/usuario": {
       "get": {
         "tags": [
@@ -2380,6 +2442,359 @@
         }
       }
     },
+    "/aluguel": {
+      "get": {
+        "tags": [
+          "Aluguel"
+        ],
+        "summary": "Consulta lista de aluguéis.",
+        "description": "Rota para consultar a lista de todos os aluguéis cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de aluguéis obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "idaluguel": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "idusuario": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "idlivro": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "dataAluguel": {
+                    "type": "string",
+                    "example": "2024-01-01"
+                  },
+                  "dataDevolucao": {
+                    "type": "string",
+                    "example": "2024-01-10"
+                  },
+                  "devolvido": {
+                    "type": "boolean",
+                    "example": false
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Aluguel"
+        ],
+        "summary": "Insere um novo aluguel.",
+        "description": "Rota para inserir um novo aluguel no sistema.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para inserir um novo aluguel",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "dataAluguel": {
+                  "type": "string",
+                  "example": "2024-01-01"
+                },
+                "dataDevolucao": {
+                  "type": "string",
+                  "example": "2024-01-10"
+                },
+                "devolvido": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Aluguel criado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluguel": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "dataAluguel": {
+                  "type": "string",
+                  "example": "2024-01-01"
+                },
+                "dataDevolucao": {
+                  "type": "string",
+                  "example": "2024-01-10"
+                },
+                "devolvido": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "409": {
+            "description": "Aluguel já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/aluguel/{idaluguel}": {
+      "delete": {
+        "tags": [
+          "Aluguel"
+        ],
+        "summary": "Remove um aluguel.",
+        "description": "Rota para remover um aluguel do sistema pelo ID.",
+        "parameters": [
+          {
+            "name": "idaluguel",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do aluguel",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Aluguel removido com sucesso)"
+          },
+          "404": {
+            "description": "Aluguel não encontrado"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Aluguel"
+        ],
+        "summary": "Atualiza parcialmente um aluguel.",
+        "description": "Rota para atualizar parcialmente um aluguel pelo ID.",
+        "parameters": [
+          {
+            "name": "idaluguel",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do aluguel",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para atualizar o aluguel",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "dataAluguel": {
+                  "type": "string",
+                  "example": "2024-01-01"
+                },
+                "dataDevolucao": {
+                  "type": "string",
+                  "example": "2024-01-10"
+                },
+                "devolvido": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluguel atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluguel": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "dataAluguel": {
+                  "type": "string",
+                  "example": "2024-01-01"
+                },
+                "dataDevolucao": {
+                  "type": "string",
+                  "example": "2024-01-10"
+                },
+                "devolvido": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Aluguel não encontrado"
+          },
+          "409": {
+            "description": "Aluguel já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Aluguel"
+        ],
+        "summary": "Atualiza todos os dados de um aluguel.",
+        "description": "Rota para atualizar todos os dados de um aluguel pelo ID.",
+        "parameters": [
+          {
+            "name": "idaluguel",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID do aluguel",
+            "example": 1
+          },
+          {
+            "name": "json",
+            "description": "Dados para substituir o aluguel",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "dataAluguel": {
+                  "type": "string",
+                  "example": "2024-01-01"
+                },
+                "dataDevolucao": {
+                  "type": "string",
+                  "example": "2024-01-10"
+                },
+                "devolvido": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluguel substituído com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluguel": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idusuario": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "dataAluguel": {
+                  "type": "string",
+                  "example": "2024-01-01"
+                },
+                "dataDevolucao": {
+                  "type": "string",
+                  "example": "2024-01-10"
+                },
+                "devolvido": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Aluguel não encontrado"
+          },
+          "409": {
+            "description": "Aluguel já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
     "/aluno_turma": {
       "get": {
         "tags": [
@@ -2531,6 +2946,144 @@
           },
           "404": {
             "description": "Associação aluno-turma não encontrada"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/livro_autor": {
+      "get": {
+        "tags": [
+          "Livro_Autor"
+        ],
+        "summary": "Consulta lista de associações livro-autor.",
+        "description": "Rota para consultar a lista de todas as associações livro-autor.",
+        "responses": {
+          "200": {
+            "description": "Lista de associações livro-autor obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "idlivro": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "idautor": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "nomeLivro": {
+                    "type": "string",
+                    "example": "Livro Exemplo"
+                  },
+                  "nomeAutor": {
+                    "type": "string",
+                    "example": "Autor Exemplo"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Livro_Autor"
+        ],
+        "summary": "Cria uma nova associação livro-autor.",
+        "description": "Rota para criar uma nova associação entre livro e autor.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para criar uma nova associação livro-autor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idautor": {
+                  "type": "number",
+                  "example": 1
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Associação livro-autor criada com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idautor": {
+                  "type": "number",
+                  "example": 1
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "409": {
+            "description": "Associação livro-autor já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Livro_Autor"
+        ],
+        "summary": "Remove uma associação livro-autor.",
+        "description": "Rota para remover uma associação entre livro e autor.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para remover a associação livro-autor",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idlivro": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idautor": {
+                  "type": "number",
+                  "example": 1
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Associação livro-autor removida com sucesso)"
+          },
+          "404": {
+            "description": "Associação livro-autor não encontrada"
           },
           "500": {
             "description": "Erro no servidor"

@@ -1,9 +1,35 @@
 const db = require("../configs/pg");
 
-const sql_get = `
+const sql_login = `
     SELECT idusuario, usuario, nome, email 
-    FROM usuario`;
+    FROM usuario
+    WHERE usuario = $1 AND senha = $2`;
 
+const loginUsuario = async (usuario, senha) => {
+  try {
+    const result = await db.query(sql_login, [usuario, senha]);
+    if (result.rowCount === 0) {
+      throw new Error("InvalidCredentials");
+    }
+    // TODO: fazer validacao JWT e cookies
+    return { mensagem: "Login realizado com sucesso!", result: result.rows[0] };
+  } catch (err) {
+    if (err.message === "InvalidCredentials") {
+      throw {
+        status: 401,
+        message: "Usuario ou senha incorretos.",
+      };
+    }
+    throw {
+      status: 500,
+      message: "Erro ao tentar realizar login. [" + err.message + "]",
+    };
+  }
+};
+
+const sql_get = `
+    SELECT idusuario, usuario, nome, email, senha 
+    FROM usuario`;
 const getUsuario = async () => {
   let usuarios = {};
   await db
@@ -197,6 +223,7 @@ const putUsuario = async (params) => {
   }
 };
 
+module.exports.loginUsuario = loginUsuario;
 module.exports.getUsuario = getUsuario;
 module.exports.getUsuarioByIdusuario = getUsuarioByIdusuario;
 module.exports.postUsuario = postUsuario;

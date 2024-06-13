@@ -22,9 +22,10 @@ const endpointsFiles = [
   "./src/routes/genero.js",
   "./src/routes/autor.js",
   "./src/routes/editora.js",
-  "./src/routes/livro.js" /*,
-  "./src/routes/aluguel.js"*/,
-  "./src/routes/aluno_turma.js"
+  "./src/routes/livro.js" ,
+  "./src/routes/aluguel.js",
+  "./src/routes/aluno_turma.js",
+  "./src/routes/livro_autor.js",
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
