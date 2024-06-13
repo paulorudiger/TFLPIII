@@ -89,10 +89,10 @@ CREATE TABLE livro_autor (
 CREATE TABLE aluno_turma (
     idaluno INTEGER NOT NULL,
     idturma INTEGER NOT NULL,
-    idprofessor INTEGER NOT NULL,
+   -- idprofessor INTEGER NOT NULL,
     ano INTEGER NOT NULL,
     PRIMARY KEY (idaluno, idturma),
     FOREIGN KEY (idaluno) REFERENCES aluno(idaluno),
-    FOREIGN KEY (idturma) REFERENCES turma(idturma),
-    FOREIGN KEY (idprofessor) REFERENCES professor(idprofessor)
+    FOREIGN KEY (idturma) REFERENCES turma(idturma)
+    --FOREIGN KEY (idprofessor) REFERENCES professor(idprofessor)
 );

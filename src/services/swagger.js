@@ -24,6 +24,7 @@ const endpointsFiles = [
   "./src/routes/editora.js",
   "./src/routes/livro.js" /*,
   "./src/routes/aluguel.js"*/,
+  "./src/routes/aluno_turma.js"
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);

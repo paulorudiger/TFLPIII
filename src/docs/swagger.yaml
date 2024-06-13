@@ -1664,6 +1664,164 @@
           }
         }
       }
+    },
+    "/aluno_turma": {
+      "get": {
+        "tags": [
+          "Aluno_Turma"
+        ],
+        "summary": "Consulta lista de associações aluno-turma.",
+        "description": "Rota para consultar a lista de todas as associações aluno-turma.",
+        "responses": {
+          "200": {
+            "description": "Lista de associações aluno-turma obtida com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "idaluno": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "idturma": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "ano": {
+                    "type": "number",
+                    "example": 2024
+                  },
+                  "nomeTurma": {
+                    "type": "string",
+                    "example": "Turma Exemplo"
+                  },
+                  "turno": {
+                    "type": "string",
+                    "example": "Matutino"
+                  },
+                  "matricula": {
+                    "type": "string",
+                    "example": "2021001"
+                  },
+                  "nomeAluno": {
+                    "type": "string",
+                    "example": "João Silva"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Aluno_Turma"
+        ],
+        "summary": "Cria uma nova associação aluno-turma.",
+        "description": "Rota para criar uma nova associação entre aluno e turma.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para criar uma nova associação aluno-turma",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluno": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idturma": {
+                  "type": "number",
+                  "example": 1
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 2024
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Associação aluno-turma criada com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluno": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idturma": {
+                  "type": "number",
+                  "example": 1
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 2024
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "409": {
+            "description": "Associação aluno-turma já existe"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Aluno_Turma"
+        ],
+        "summary": "Remove uma associação aluno-turma.",
+        "description": "Rota para remover uma associação entre aluno e turma.",
+        "parameters": [
+          {
+            "name": "json",
+            "description": "Dados para remover a associação aluno-turma",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idaluno": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idturma": {
+                  "type": "number",
+                  "example": 1
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Nenhum conteúdo (Associação aluno-turma removida com sucesso)"
+          },
+          "404": {
+            "description": "Associação aluno-turma não encontrada"
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
     }
   },
   "basepath": ""
