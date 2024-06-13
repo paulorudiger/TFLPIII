@@ -48,19 +48,25 @@ const sql_get_by_id = `
 
 const getUsuarioByIdusuario = async (idusuario) => {
   let usuario = {};
-  await db
-    .query(sql_get_by_id, [idusuario])
-    .then((ret) => {
-      if (ret.rows.length === 0) {
-        return false;
-      } else {
-        return (usuario = ret.rows[0]);
-      }
-    })
-    .catch((err) => {
-      throw { status: 500, message: err.stack };
-    });
-  //return usuario;
+
+  try {
+    const result = await db.query(sql_get_by_id, [idusuario]);
+    if (result.rowCount === 0) {
+      throw new Error("NotFound");
+    }
+    return result.rows[0];
+  } catch (error) {
+    if (err.message === "NotFound") {
+      throw {
+        status: 404,
+        message: `Não foi encontrado um usuario com o ID "${idusuario}"`,
+      };
+    }
+    throw {
+      status: 500,
+      message: "Erro ao tentar criar o usuário. [" + err.message + "]",
+    };
+  }
 };
 
 const sql_insert = `

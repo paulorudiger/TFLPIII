@@ -30,15 +30,15 @@ const getUsuarioByIdusuario = async (req, res, next) => {
     const retorno = await usuarioService.getUsuarioByIdusuario(
       req.params.idusuario
     );
-    if (!retorno) {
-      res
-        .status(404)
-        .send(`Usuário com o ID ${req.params.idusuario} não encontrado`);
-    } else {
-      res.status(200).send(retorno);
-    }
+    res.status(200).send(retorno);
   } catch (err) {
-    res.status(500).send(err.message);
+    switch (err.status) {
+      case 404:
+        res.status(409).send(err.message);
+        break;
+      default:
+        res.status(500).send(err.message);
+    }
   }
 };
 
@@ -111,7 +111,6 @@ const putUsuario = async (req, res, next) => {
     }
   }
 };
-
 
 module.exports.loginUsuario = loginUsuario;
 module.exports.getUsuario = getUsuario;

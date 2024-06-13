@@ -242,6 +242,9 @@
           "404": {
             "description": "Usuário não encontrado"
           },
+          "409": {
+            "description": "Conflito"
+          },
           "500": {
             "description": "Erro no servidor"
           }
