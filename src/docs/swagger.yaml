@@ -280,7 +280,7 @@
           "Usuario"
         ],
         "summary": "Atualiza parcialmente um usuário.",
-        "description": "Rota para atualizar parcialmente um usuário pelo ID.",
+        "description": "Rota para atualizar parcialmente um usuário pelo ID. É possível alterar o nome, senha, email e nome de usuário.",
         "parameters": [
           {
             "name": "idusuario",
@@ -362,7 +362,7 @@
           "Usuario"
         ],
         "summary": "Atualiza todos os dados de um usuário.",
-        "description": "Rota para atualizar todos os dados de um usuário pelo ID.",
+        "description": "Rota para atualizar todos os dados de um usuário pelo ID. É possível alterar o nome, senha, email e nome de usuário.",
         "parameters": [
           {
             "name": "idusuario",

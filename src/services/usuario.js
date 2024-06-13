@@ -179,12 +179,12 @@ const patchUsuario = async (params) => {
 };
 
 const sql_put = `
-    UPDATE usuario
-    SET usuario = $2,
-        senha = $3,
-        nome = $4,
-        email = $5
-    WHERE idusuario = $1`;
+        UPDATE usuario
+        SET usuario = $2,
+            senha = $3,
+            nome = $4,
+            email = $5
+        WHERE idusuario = $1`;
 
 const putUsuario = async (params) => {
   const { idusuario, usuario, senha, nome, email } = params;

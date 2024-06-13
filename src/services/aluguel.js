@@ -32,6 +32,8 @@ const postAluguel = async (params) => {
     if (result.rowCount === 0) {
       throw new Error("NotFound");
     }
+    // TODO: verifdicar se o livro ja foi devolvido antes de criar novo aluguel
+
     return { mensagem: "Aluguel criado com sucesso!", result: result.rows[0] };
   } catch (err) {
     throw {
@@ -105,6 +107,7 @@ const patchAluguel = async (params) => {
     if (result.rowCount === 0) {
       throw new Error("NotFound");
     }
+    // TODO: verificar se o livro ja foi devolvido antes de criar novo aluguel
     return { mensagem: "Aluguel atualizado com sucesso!" };
   } catch (err) {
     if (err.message === "NotFound") {
@@ -147,6 +150,7 @@ const putAluguel = async (params) => {
     if (result.rowCount === 0) {
       throw new Error("NotFound");
     }
+    // TODO: verificar se o livro ja foi devolvido antes de criar novo aluguel
     return { mensagem: "Aluguel atualizado com sucesso!" };
   } catch (err) {
     if (err.message === "NotFound") {

@@ -112,6 +112,7 @@ const putUsuario = async (req, res, next) => {
   }
 };
 
+
 module.exports.loginUsuario = loginUsuario;
 module.exports.getUsuario = getUsuario;
 module.exports.getUsuarioByIdusuario = getUsuarioByIdusuario;

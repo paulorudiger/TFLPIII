@@ -1,7 +1,6 @@
 const usuarioController = require("../controllers/usuario");
 
 module.exports = (app) => {
-
   app.get(
     "/usuario/login/:usuario/:senha",
     /* 
@@ -142,7 +141,7 @@ module.exports = (app) => {
     /* 
     #swagger.tags = ["Usuario"]
     #swagger.summary = "Atualiza parcialmente um usuário."
-    #swagger.description = "Rota para atualizar parcialmente um usuário pelo ID."
+    #swagger.description = "Rota para atualizar parcialmente um usuário pelo ID. É possível alterar o nome, senha, email e nome de usuário."
     #swagger.parameters['idusuario'] = {
       description: 'ID do usuário',
       in: 'path',
@@ -183,7 +182,7 @@ module.exports = (app) => {
     /* 
     #swagger.tags = ["Usuario"]
     #swagger.summary = "Atualiza todos os dados de um usuário."
-    #swagger.description = "Rota para atualizar todos os dados de um usuário pelo ID."
+    #swagger.description = "Rota para atualizar todos os dados de um usuário pelo ID. É possível alterar o nome, senha, email e nome de usuário."
     #swagger.parameters['idusuario'] = {
       description: 'ID do usuário',
       in: 'path',
