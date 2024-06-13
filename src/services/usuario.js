@@ -1,4 +1,6 @@
 const db = require("../configs/pg");
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 const sql_login = `
     SELECT idusuario, usuario, nome, email 
@@ -12,12 +14,27 @@ const loginUsuario = async (usuario, senha) => {
       throw new Error("InvalidCredentials");
     }
     // TODO: fazer validacao JWT e cookies
-    return { mensagem: "Login realizado com sucesso!", result: result.rows[0] };
+
+    let perfilAcesso = result.rows[0].usuario;
+    const privateKey = fs.readFileSync("./src/private/private_key.pem");
+    let token = jwt.sign({ perfilAcesso }, privateKey, {
+      algorithm: "RS256",
+      expiresIn: "7d",
+    });
+    return {
+      status: "Logado com sucesso!",
+      user: result.rows[0].usuario,
+      token: token,
+    };
+
+    // return { mensagem: "Login realizado com sucesso!", result: result.rows[0] };
   } catch (err) {
     if (err.message === "InvalidCredentials") {
       throw {
-        status: 401,
-        message: "Usuario ou senha incorretos.",
+        status: 400,
+        type: "WARN",
+        message: "Senha inválida!",
+        detail: "",
       };
     }
     throw {
