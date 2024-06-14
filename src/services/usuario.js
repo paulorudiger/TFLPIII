@@ -13,8 +13,6 @@ const loginUsuario = async (usuario, senha) => {
     if (result.rowCount === 0) {
       throw new Error("InvalidCredentials");
     }
-    // TODO: fazer validacao JWT e cookies
-
     let perfilAcesso = result.rows[0].usuario;
     const privateKey = fs.readFileSync("./src/private/private_key.pem");
     let token = jwt.sign({ perfilAcesso }, privateKey, {
